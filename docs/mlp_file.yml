@@ -1,5 +1,5 @@
 tags:
-  - name: File Sentiment Analysis using Neural Network
+  - name: File Sentiment Classification using Neural Network
 get:
   description: Teks yang akan diproses
 consumes:

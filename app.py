@@ -65,9 +65,8 @@ def mlp():
     # response API
     json_response = {
         'status_code': 200,
-        'description': 'Results of sentiment Analysis using LSTM',
+        'description': 'Text yang sudah di cleansing dan hasil prediksi',
         'data': {
-            'original text': original_text,
             'clean text': text,
             'sentiment': prediction
         }
@@ -87,7 +86,7 @@ def mlp_file():
     file = request.files.getlist('file')[0]
 
     # Import file csv to Pandas
-    df = pd.read_csv(file, sep="delimiter", encoding="latin-1")
+    df = pd.read_csv(file, sep="delimiter", encoding="latin-1", engine='python')
 
     #  assertion
     assert any(df.columns == 'text')
@@ -115,7 +114,7 @@ def mlp_file():
 
     json_response = {
         'status_code': 200,
-        'description': "Teks yang sudah di cleansing dan hasil prediksi",
+        'description': "File yang sudah di cleansing dan hasil prediksi",
         'data': final_text_with_sentiment
     }
 
@@ -141,9 +140,8 @@ def lstm():
     # response API
     json_response = {
         'status_code': 200,
-        'description': 'Results of sentiment Analysis using LSTM',
+        'description': 'Text yang sudah di cleansing dan hasil prediksi',
         'data': {
-            'original text': original_text,
             'clean text': text,
             'sentiment': get_sentiment
         }
@@ -193,7 +191,7 @@ def lstm_file():
 
     json_response = {
         'status_code': 200,
-        'description': "Teks yang sudah di cleansing dan hasil prediksi",
+        'description': "File yang sudah di cleansing dan hasil prediksi",
         'data': final_text_with_sentiment
     }
 

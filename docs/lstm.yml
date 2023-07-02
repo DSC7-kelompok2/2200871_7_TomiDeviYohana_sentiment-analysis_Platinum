@@ -1,5 +1,5 @@
 tags:
-  - name: Sentiment Analysis using LSTM
+  - name: Text Sentiment Classification using LSTM
 get:
   description: Teks yang akan diproses
 parameters:
