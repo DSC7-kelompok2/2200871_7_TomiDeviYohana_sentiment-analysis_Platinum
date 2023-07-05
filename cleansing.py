@@ -19,14 +19,16 @@ def text_lower(text):
 def remove_unnecessary_char(text):
 
     text = re.sub(r'\\+n', ' ', text)  # remove every '\\n'
-    text = re.sub('user', ' ', text)  # remove every username
     text = re.sub(r'\n', " ", text)  # remove every '\n'
-    text = ' '.join([i for i in text.split() if i != 'rt']
-                    )   # remove every retweet symbol
+    # remove every username
+    text = ' '.join(
+        re.sub("([@#][A-Za-z0-9_]+)|(\w+:\/\/\S+)", " ", text).split())
+    # text = ' '.join([i for i in text.split() if  i != 'rt'])   # remove every retweet symbol
     text = re.sub(r'\\x.{2}', ' ', text)  # remove emoji
     text = re.sub(
         r'((www\.[^\s]+)|(https?://[^\s]+)|(http?://[^\s]+))', ' ', text)
     text = re.sub(r'&amp;', ' dan ', text)  # remove ampersant
+    text = re.sub(r'&&+', ' ', text)  # remove ampersant
     text = re.sub(r'&', ' dan ', text)  # remove ampersant
     text = re.sub('[%s]' % re.escape(string.punctuation),
                   ' ', text)  # remove punctuation
@@ -36,7 +38,6 @@ def remove_unnecessary_char(text):
     text = ' '.join([i for i in text.split() if len(i) > 1])
     text = re.sub(r'  +', ' ', text)  # remove extra spaces
     text = text.rstrip().lstrip()  # remove rstrip and lstrip
-
     return text
 
 
